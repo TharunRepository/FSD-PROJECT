@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dayananda Sagar — Modern University UI</title>
+  <meta name="description" content="University landing page — modern responsive design with animations and improved UX." />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top announcement -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+      <p class="announcement" aria-live="polite">
+        📅 ACADEMIC CALENDAR 2025–26 — <a href="#" class="link-cta">Apply for Oct 2025 Executive MBA</a>
+      </p>
+
+      <div class="topbar-controls">
+        <label class="sr-only" for="site-search">Search site</label>
+        <div class="search">
+          <input id="site-search" type="search" placeholder="Search..." />
+          <button class="btn small">Search</button>
+        </div>
+        <select aria-label="Choose language">
+          <option>English</option>
+          <option>हिन्दी</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main header with logo & quick links -->
+  <div class="header-top" role="region" aria-label="Site header">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="images/logo.png" alt="Dayananda Sagar logo" class="logo">
+        <div class="brand-text">
+          <h1>DAYANANDA SAGAR</h1>
+          <p>UNIVERSITY</p>
+        </div>
+      </div>
+
+      <div class="quick-links">
+        <a class="badge careers" href="#" role="button">CAREERS</a>
+        <nav aria-label="Quick links" class="header-nav">
+          <a href="#">Virtual Tour</a>
+          <a href="#">Examination</a>
+          <a href="#">News & Events</a>
+          <a href="#">ERP</a>
+          <a href="#">Login</a>
+          <a class="badge nri" href="#">NRI/FOREIGN ADMISSIONS</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky main navigation -->
+  <nav class="main-nav" role="navigation" aria-label="Main">
+    <div class="nav-inner">
+      <button id="mobile-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
+        <span class="hamburger"></span>
+      </button>
+
+      <!-- ✅ UPDATED MENU WITH DROPDOWNS -->
+      <ul id="primary-menu" class="menu">
+
+        <li><a href="index.html">HOME</a></li>
+
+        <!-- UNIVERSITY DROPDOWN -->
+        <li class="dropdown">
+          <a href="#" class="dropbtn">UNIVERSITY ▾</a>
+          <ul class="dropdown-content">
+            <li><a href="about.html">About</a></li>
+            <li><a href="leadership.html">Leadership</a></li>
+            <li><a href="administration.html">Administration</a></li>
+            <li><a href="ugc.html">UGC</a></li>
+            <li><a href="nirf.html">NIRF</a></li>
+          </ul>
+        </li>
+
+        <!-- ACADEMICS MULTI-LEVEL DROPDOWN -->
+        <li class="dropdown">
+          <a href="#" class="dropbtn">ACADEMICS ▾</a>
+          <ul class="dropdown-content">
+            <li class="dropdown-sub">
+              <a href="#">Schools ▸</a>
+              <ul class="dropdown-submenu">
+                <li><a href="engineering.html">Engineering</a></li>
+                <li><a href="computer-applications.html">Computer Applications</a></li>
+                <li><a href="law.html">School of Law</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown-sub">
+              <a href="#">UG Programs ▸</a>
+              <ul class="dropdown-submenu">
+                <li><a href="bba.html">BBA</a></li>
+                <li><a href="bcom.html">B.Com</a></li>
+                <li><a href="bdesign.html">B.Design</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li><a href="#">ADMISSIONS</a></li>
+        <li><a href="#">INTERNATIONAL</a></li>
+        <li><a href="#">RESEARCH</a></li>
+        <li><a href="#">PLACEMENT</a></li>
+        <li><a href="#">LIBRARY</a></li>
+        <li><a href="#">CONTACT</a></li>
+
+      </ul>
+
+      <div class="nav-cta">
+        <a class="btn primary" href="#">Apply Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / Slider -->
+  <main>
+    <section class="hero" aria-label="Hero">
+      
+      <div class="hero-slider" id="hero-slider" data-interval="4000">
+        <div class="slide" data-index="0" aria-hidden="false" style="background-image:url('images/banner1.png')">
+               <div class="hero-content reveal">
+
+            <h2>B.Tech Admissions 2026-27</h2>
+            <p>Engineering excellence with industry-linked curriculum and placement support.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#">Apply</a>
+              <a class="btn ghost" href="#">Program Details</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide" data-index="1" aria-hidden="true" style="background-image:url('images/banner2.png')">
+          <div class="hero-content reveal">
+            <h2>Executive MBA — Oct 2025</h2>
+            <p>Weekend classes for working professionals. Limited seats available.</p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#">Register</a>
+              <a class="btn ghost" href="#">Download Brochure</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="slider-control prev" aria-label="Previous slide">&lsaquo;</button>
+        <button class="slider-control next" aria-label="Next slide">&rsaquo;</button>
+        <div class="slider-dots" aria-hidden="false"></div>
+      </div>
+    </section>
+
+    <!-- Recognition & awards -->
+    <section class="awards-section reveal" aria-label="Recognition and accreditations">
+      <div class="section-inner">
+        <h2>Recognition & Accreditations</h2>
+        <div class="awards-carousel" role="list">
+          <figure class="award" role="listitem">
+            <img src="images/ksure-award.png" alt="KSURE Rating - Teaching Excellence">
+            <figcaption>KSURE Rating</figcaption>
+          </figure>
+
+          <figure class="award" role="listitem">
+            <img src="images/ex.png" alt="Educational Excellence 2021">
+            <figcaption>Educational Excellence 2021</figcaption>
+          </figure>
+
+          <figure class="award" role="listitem">
+            <img src="images/eme.png" alt="DSU Rank">
+            <figcaption>DSU Rank No. 1 (2022)</figcaption>
+          </figure>
+
+          <figure class="award" role="listitem">
+            <img src="images/bus.png" alt="Times Best Emerging University">
+            <figcaption>Times Best Emerging University</figcaption>
+          </figure>
+
+          <figure class="award" role="listitem">
+            <img src="images/sil.png" alt="IIRF Ranking 2023">
+            <figcaption>IIRF National Ranking</figcaption>
+          </figure>
+
+          <figure class="award" role="listitem">
+            <img src="images/iirf.png" alt="Careers360">
+            <figcaption>Careers360 AAA Ranking</figcaption>
+          </figure>
+        </div>
+
+        <div class="badges">
+          <div class="badge-card">
+            <img src="images/360.png" alt="A+ Grade">
+            <p>A+ Grade</p>
+          </div>
+          <div class="badge-card">
+            <img src="images/a g.png" alt="NAAC accreditation">
+            <p>NAAC Accreditation</p>
+          </div>
+          <div class="badge-card">
+            <img src="images/naac.png" alt="NAAC certified">
+            <p>NAAC Certified</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs grid -->
+    <section class="programs-section reveal" aria-label="Programs and Schools">
+      <div class="section-inner">
+        <h2>Our Schools & Departments</h2>
+        <div class="programs-grid">
+          <article class="program-card" tabindex="0">
+            <h3>ENGINEERING</h3>
+            <p>Undergraduate and postgraduate programmes across core engineering disciplines.</p>
+          </article>
+
+          <article class="program-card" tabindex="0">
+            <h3>COMPUTER APPLICATIONS</h3>
+            <p>MCA & short-courses in AI, ML, and Web Development.</p>
+          </article>
+
+          <article class="program-card" tabindex="0">
+            <h3>SCHOOL OF LAW</h3>
+            <p>Integrated and professional law programmes with moot courts and clinics.</p>
+          </article>
+
+          <article class="program-card" tabindex="0">
+            <h3>APPLIED SCIENCES</h3>
+            <p>Research-led teaching in Mathematics, Physics & Chemistry.</p>
+          </article>
+
+          <article class="program-card" tabindex="0">
+            <h3>COMMERCE & MANAGEMENT</h3>
+            <p>MBA, BBA and executive programs with corporate partnerships.</p>
+          </article>
+
+          <article class="program-card" tabindex="0">
+            <h3>EXECUTIVE EDUCATION</h3>
+            <p>Short modular programs for professionals.</p>
+          </article>
+
+          <article class="program-card" tabindex="0">
+            <h3>ARTS, DESIGN & HUMANITIES</h3>
+            <p>Creative programs focused on design, media & communication.</p>
+          </article>
+
+          <article class="program-card" tabindex="0">
+            <h3>DESIGN & DIGITAL TRANSMEDIA</h3>
+            <p>Immersive courses in digital storytelling and UX.</p>
+          </article>
+
+          <article class="program-card" tabindex="0">
+            <h3>HEALTH SCIENCES</h3>
+            <p>Interdisciplinary health and allied programmes.</p>
+          </article>
+
+          <article class="program-card" tabindex="0">
+            <h3>MBBS</h3>
+            <p>Full medical programme with hospital affiliations.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+<section class="hero water-border">
+  <div class="watermark-logo">
+    <img src="images/watermark-logo.png" alt="Dayananda Sagar University watermark logo">
+  <!-- Footer -->
+  <!-- Modern DSU Footer -->
+<footer id="dsu-footer" class="site-footer" role="contentinfo" aria-label="Site footer">
+  <div class="footer-inner container">
+    <!-- ABOUT -->
+    <div class="footer-col col-about">
+      <h4 class="footer-heading">ABOUT</h4>
+      <ul class="footer-list">
+        <li><a href="#">The University</a></li>
+        <li><a href="#">Vision &amp; Mission</a></li>
+        <li><a href="#">News &amp; Events</a></li>
+        <li><a href="#">Research</a></li>
+        <li><a href="#">Innovation Labs</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+
+      <h4 class="footer-heading mt">IMPORTANT INFORMATION</h4>
+      <ul class="footer-list small">
+        <li><a href="#">Internal Quality Assurance Cell (IQAC)</a></li>
+        <li><a href="#">DSU University ACT</a></li>
+        <li><a href="#">Disclosure: RTI Act 2005</a></li>
+        <li><a href="#">CET Code (B.Tech) - E240</a></li>
+        <li><a href="#">PGCET Code(M.Tech) - T970</a></li>
+      </ul>
+    </div>
+
+    <!-- SCHOOLS -->
+    <div class="footer-col col-schools">
+      <h4 class="footer-heading">SCHOOLS</h4>
+      <ul class="footer-list">
+        <li><a href="#">School of Engineering</a></li>
+        <li><a href="#">School of Computer Applications</a></li>
+        <li><a href="#">School of Commerce &amp; Management</a></li>
+        <li><a href="#">School of Basic &amp; Applied Sciences</a></li>
+        <li><a href="#">School of Health Sciences</a></li>
+        <li><a href="#">School of Arts, Design &amp; Humanities</a></li>
+        <li><a href="#">School of Design and Digital Transmedia</a></li>
+        <li><a href="#">School of Law</a></li>
+      </ul>
+    </div>
+
+    <!-- ADMISSIONS -->
+    <div class="footer-col col-admissions">
+      <h4 class="footer-heading">ADMISSIONS</h4>
+      <ul class="footer-list">
+        <li><a href="#">Admissions details</a></li>
+        <li><a href="#">DSAT Admissions - Apply Online</a></li>
+        <li><a href="#">Direct Admissions - Apply Online</a></li>
+        <li><a href="#">Course Eligibility &amp; Fee Structure</a></li>
+      </ul>
+
+      <h4 class="footer-heading mt">ADMISSIONS HELPLINE</h4>
+      <div class="contact-block">
+        <p><strong>Phone:</strong> 080 46461800 / +91 6366885507</p>
+        <p><strong>E-mail:</strong> <a href="mailto:admissions@dsu.edu.in">admissions@dsu.edu.in</a></p>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="footer-col col-contacts">
+      <div class="logo-wrap">
+        <img src="images/logo.png" alt="Dayananda Sagar University logo" class="footer-logo">
+      </div>
+
+      <h4 class="footer-heading mt">DSU Main Campus:</h4>
+      <address class="address">
+        Devarakaggalahalli, Harohalli, Kanakapura Road,<br>
+        Bengaluru South Dt. – 562 112<br>
+        <a href="tel:+918000000000">+91 80000 00000</a><br>
+        <a href="mailto:info@dsu.edu.in">info@dsu.edu.in</a>
+      </address>
+
+      <div class="social">
+        <a href="#" aria-label="Facebook" class="social-btn">FB</a>
+        <a href="#" aria-label="Twitter" class="social-btn">TW</a>
+        <a href="#" aria-label="LinkedIn" class="social-btn">IN</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; <span id="dsu-year"></span> Dayananda Sagar University — All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+  <!-- Linked JS -->
+  <script src="ola.js"></script>
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>University — Recognition & Programs (fixed)</title>
+
+  <style>
+    /* ====== Vars & reset ====== */
+    :root{
+      --max-width:1100px;
+      --muted:#6b7986;
+      --card:#ffffff;
+      --shadow: 0 8px 26px rgba(8,18,30,0.04);
+      --ease:cubic-bezier(.2,.9,.3,1);
+      --accent: #0b3760;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      color:#0b2d3b;
+      background:#f6f8fb;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    img{display:block; max-width:100%; height:auto; -o-object-fit:contain; object-fit:contain;}
+
+    main{padding:28px 0;}
+
+    .section-inner{ max-width:var(--max-width); margin:0 auto; padding:0 18px; }
+
+    h2{ font-size:28px; margin:0 0 18px 0; text-align:center; color:var(--accent); }
+
+    /* ========== AWARDS ========== */
+    .awards-section{
+      background: linear-gradient(180deg,#f8fbfd,#fff);
+      padding:48px 0;
+    }
+
+    .awards-carousel{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      padding:12px 6px;
+      margin: 0 auto;
+    }
+
+    .award{
+      width:140px;
+      text-align:center;
+      background:var(--card);
+      padding:12px;
+      border-radius:12px;
+      box-shadow: var(--shadow);
+      transition: transform 300ms var(--ease), box-shadow 300ms var(--ease);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      min-height:110px;
+    }
+
+    .award img{
+      max-height:72px;
+      width:100%;
+      height:72px;
+      object-fit:contain;
+      background:transparent;
+    }
+
+    .award figcaption{
+      margin-top:8px;
+      font-weight:600;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .award:hover{ transform: translateY(-6px) rotate(-1deg); }
+
+    /* badges */
+    .badges{
+      display:flex;
+      gap:18px;
+      justify-content:center;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+    .badge-card{
+      width:120px;
+      padding:12px;
+      border-radius:12px;
+      background:linear-gradient(180deg,#fff,#f7fbff);
+      box-shadow: var(--shadow);
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:6px;
+    }
+    .badge-card img{ max-height:56px; width:100%; height:56px; object-fit:contain; }
+
+    /* ========== PROGRAMS GRID ========== */
+    .programs-section{
+      padding:48px 0;
+      background:#fff;
+    }
+
+    .programs-grid{
+      display:grid;
+      gap:12px;
+      grid-template-columns: repeat(5, 1fr);
+      margin-top:10px;
+    }
+
+    .program-card{
+      background: linear-gradient(180deg, rgba(11,127,179,0.06), rgba(27,143,200,0.04));
+      border-radius: 12px;
+      padding:22px;
+      min-height:120px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:flex-start;
+      transition: transform 260ms var(--ease), box-shadow 260ms var(--ease);
+      box-shadow: 0 8px 26px rgba(8,18,30,0.04);
+    }
+    .program-card h3{ margin:0 0 6px 0; color: #05384f; font-size:16px; letter-spacing:0.4px; }
+    .program-card p{ margin:0; color: var(--muted); font-size:13px; }
+
+    .program-card:hover, .program-card:focus{
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 18px 36px rgba(8,18,30,0.08);
+      outline:none;
+    }
+
+    /* reveal animation (used by .reveal) */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity 420ms var(--ease), transform 420ms var(--ease);
+      will-change:opacity,transform;
+    }
+    .reveal.is-visible{
+      opacity:1;
+      transform: none;
+    }
+
+    /* small utility */
+    .visually-hidden{ position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+
+    /* responsive adjustments */
+    @media (max-width:1200px){
+      .programs-grid{ grid-template-columns:repeat(4,1fr); }
+    }
+    @media (max-width:900px){
+      .programs-grid{ grid-template-columns: repeat(3, 1fr); }
+      .hero { min-height:380px; }
+    }
+    @media (max-width:600px){
+      .programs-grid{ grid-template-columns: repeat(2, 1fr); }
+      .awards-carousel{ gap:12px; }
+    }
+    @media (max-width:420px){
+      .programs-grid{ grid-template-columns: repeat(1, 1fr); }
+    }
+
+    /* fallback for broken images: give a subtle placeholder */
+    .award img, .badge-card img{
+      background: linear-gradient(180deg,#fff,#f3f7fb);
+    }
+
+    /* small page layout nicety */
+    .spacer{ height:18px }
+  </style>
+  <script>
+    // Reveal on scroll (IntersectionObserver)
+    (function(){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            // optionally unobserve to avoid repeated triggers:
+            io.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.12});
+
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    })();
+
+    // Optional: basic keyboard focus support for program cards (adds focus outline)
+    (function(){
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Tab') document.body.classList.add('user-is-tabbing');
+      });
+    })();
+  </script>
+</body>
+</html>
