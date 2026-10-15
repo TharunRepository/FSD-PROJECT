@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#f5f5ef">
+	<meta name="description" content="Review your CampusRide student travel pass and passenger details.">
+	<title>Checkout | CampusRide</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+		:root {
+			--ink: #202922; --muted: #68746a; --paper: #f5f5ef; --white: #fffefa; --line: #dfe3d8;
+			--green: #286447; --green-dark: #204e38; --lime: #d8f16d; --coral: #e9775a;
+			--soft-green: #eaf0e6; --mono: 'DM Mono', monospace; --sans: 'Manrope', 'Avenir Next', sans-serif;
+		}
+		* { box-sizing: border-box; }
+		body { min-width: 320px; min-height: 100vh; margin: 0; color: var(--ink); background: var(--paper) radial-gradient(#d9dfd3 .7px, transparent .7px); background-size: auto, 19px 19px; font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+		button, input { font: inherit; }
+		button { color: inherit; }
+		.site-header { height: 76px; padding: 0 6%; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(32, 41, 34, .11); background: rgba(245, 245, 239, .94); }
+		.brand { display: flex; align-items: center; gap: 11px; color: inherit; text-decoration: none; }
+		.brand-mark { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 11px 11px 11px 3px; background: var(--green); color: var(--lime); font-size: 21px; font-weight: 800; transform: rotate(-4deg); }
+		.brand-name { font-size: 19px; font-weight: 800; }
+		.brand-name span { color: var(--green); }
+		.back-link { color: var(--green); font-size: 14px; font-weight: 800; text-decoration: none; }
+		.back-link:hover { text-decoration: underline; }
+		main { width: min(1320px, calc(100% - 80px)); min-height: calc(100vh - 76px); margin: 0 auto; padding: 44px 0 54px; }
+		.page-heading { margin-bottom: 25px; }
+		.eyebrow { margin: 0 0 10px; color: var(--green); font: 12px var(--mono); text-transform: uppercase; }
+		h1 { margin: 0; font-size: clamp(38px, 4vw, 54px); line-height: 1.1; }
+		.page-heading p:last-child { margin: 10px 0 0; color: var(--muted); font-size: 16px; }
+		.layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .68fr); align-items: start; gap: 24px; }
+		.panel { border: 1px solid var(--line); border-radius: 8px; background: var(--white); box-shadow: 0 14px 38px rgba(38, 55, 41, .06); }
+		.details-panel { padding: 30px clamp(22px, 3vw, 44px); }
+		.section-heading { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; font-size: 19px; }
+		.section-number { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--soft-green); color: var(--green); font: 12px var(--mono); }
+		.section-subtitle { margin: -11px 0 20px 42px; color: var(--muted); font-size: 14px; }
+		.student-list { display: grid; gap: 12px; }
+		.student-card { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(120px, .6fr); gap: 15px; padding: 17px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+		.student-card-title { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; color: var(--green-dark); font-size: 13px; font-weight: 800; }
+		.student-card-title span:last-child { color: var(--muted); font: 11px var(--mono); }
+		.field label { display: block; margin-bottom: 7px; color: #47534a; font-size: 13px; font-weight: 700; }
+		.field input { width: 100%; height: 49px; padding: 0 13px; border: 1px solid var(--line); border-radius: 4px; outline: 0; background: #fff; color: var(--ink); font-size: 15px; }
+		.field input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(40, 100, 71, .12); }
+		.divider { height: 1px; margin: 25px 0; background: var(--line); }
+		.phone-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 12px; }
+		.phone-input { display: flex; }
+		.country-code { min-width: 61px; display: grid; place-items: center; border: 1px solid var(--line); border-right: 0; border-radius: 4px 0 0 4px; background: #f5f6f1; font: 13px var(--mono); }
+		.phone-input input { border-radius: 0 4px 4px 0; }
+		.secondary-button { min-height: 49px; padding: 0 17px; border: 1px solid var(--green); border-radius: 4px; background: #fff; color: var(--green); cursor: pointer; font-size: 13px; font-weight: 800; white-space: nowrap; }
+		.secondary-button:hover { background: var(--soft-green); }
+		.otp-area { display: none; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 12px; margin-top: 15px; }
+		.otp-area.is-visible { display: grid; }
+		.otp-area input { letter-spacing: 4px; font-family: var(--mono); }
+		.field-hint { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+		.status { min-height: 21px; margin: 10px 0 0; color: var(--green); font-size: 13px; line-height: 1.55; }
+		.safety-card { margin: 25px 0 0; padding: 18px; border: 1px solid #efc4b5; border-radius: 6px; background: #fff5f0; }
+		.safety-heading { display: flex; align-items: center; gap: 10px; margin: 0 0 7px; color: #8d3f2e; font-size: 16px; }
+		.safety-heading span { width: 27px; height: 27px; display: grid; place-items: center; border-radius: 50%; background: #f7ddd2; font: 15px var(--mono); }
+		.safety-copy { margin: 0 0 15px; color: #755449; font-size: 13px; line-height: 1.55; }
+		.safety-fields { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 12px; }
+		.sos-widget { position: fixed; z-index: 10; right: 22px; bottom: 20px; display: grid; justify-items: end; gap: 8px; }
+		.sos-button { min-height: 52px; display: flex; align-items: center; gap: 10px; padding: 0 17px; border: 0; border-radius: 5px; background: #b84732; color: #fff; box-shadow: 0 7px 22px rgba(83, 35, 24, .24); cursor: pointer; font-size: 14px; font-weight: 800; transition: background .15s, transform .15s; }
+		.sos-button:hover { transform: translateY(-1px); background: #963a29; }
+		.sos-button:focus-visible, .copy-sos:focus-visible, .sms-link:focus-visible { outline: 3px solid #e9a45e; outline-offset: 3px; }
+		.sos-icon { width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid rgba(255, 255, 255, .65); border-radius: 50%; font: 14px var(--mono); }
+		.sos-status { max-width: min(390px, calc(100vw - 32px)); margin: 0; padding: 10px 13px; border: 1px solid #efc4b5; border-radius: 4px; background: #fffefa; color: #704435; box-shadow: 0 4px 16px rgba(38, 55, 41, .1); font-size: 12px; line-height: 1.5; }
+		.sos-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+		.sms-link, .copy-sos { min-height: 39px; display: inline-flex; align-items: center; justify-content: center; padding: 0 12px; border: 1px solid #a94632; border-radius: 4px; background: #fffefa; color: #8d3f2e; cursor: pointer; font-size: 12px; font-weight: 800; text-decoration: none; }
+		[hidden] { display: none !important; }
+		.payment-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; min-width: 0; margin: 0; padding: 0; border: 0; }
+		.payment-option { position: relative; min-height: 84px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 7px; padding: 13px; border: 1px solid var(--line); border-radius: 5px; background: #fff; cursor: pointer; transition: border-color .15s, background .15s; }
+		.payment-option:hover { border-color: #9aaf9c; }
+		.payment-option:has(input:checked) { border-color: var(--green); background: #f0f5ec; box-shadow: inset 0 0 0 1px var(--green); }
+		.payment-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+		.payment-option:focus-within { outline: 3px solid rgba(40, 100, 71, .18); outline-offset: 2px; }
+		.payment-icon { color: var(--green); font: 16px var(--mono); }
+		.payment-name { font-size: 13px; font-weight: 800; }
+		.checkout-button { width: 100%; min-height: 57px; display: flex; align-items: center; justify-content: space-between; margin-top: 23px; padding: 0 18px; border: 0; border-radius: 4px; background: var(--green); color: white; cursor: pointer; font-size: 15px; font-weight: 800; transition: background .15s, transform .15s; }
+		.checkout-button:hover { transform: translateY(-1px); background: var(--green-dark); }
+		.checkout-button:focus-visible, .secondary-button:focus-visible { outline: 3px solid #f1a184; outline-offset: 2px; }
+		.checkout-button:disabled { cursor: not-allowed; opacity: .55; transform: none; }
+		.demo-note { margin: 14px 0 0; padding: 12px 14px; border-left: 3px solid var(--coral); background: #fff2ed; color: #704435; font-size: 12px; line-height: 1.6; }
+		.error-message { min-height: 20px; margin: 10px 0 0; color: #aa392b; font-size: 13px; }
+		.summary-panel { position: sticky; top: 22px; padding: 29px; background: var(--green-dark); color: #fff; overflow: hidden; }
+		.summary-kicker { margin: 0; color: #c3d4be; font: 12px var(--mono); text-transform: uppercase; }
+		.route { display: grid; grid-template-columns: 14px 1fr; gap: 13px; margin: 25px 0; }
+		.route-markers { display: flex; flex-direction: column; align-items: center; padding: 4px 0; }
+		.route-markers span { width: 10px; height: 10px; border: 2px solid var(--lime); border-radius: 50%; }
+		.route-markers span:last-child { border-color: #f1a184; }
+		.route-markers i { height: 27px; border-left: 1px dashed rgba(255, 255, 255, .45); }
+		.route-labels { display: flex; flex-direction: column; gap: 14px; }
+		.route-labels strong { overflow-wrap: anywhere; font-size: 15px; font-weight: 600; }
+		.summary-divider { height: 1px; background: rgba(255, 255, 255, .2); }
+		.summary-rows { display: grid; gap: 15px; margin: 22px 0; }
+		.summary-row { display: flex; justify-content: space-between; gap: 12px; color: #d0ded0; font-size: 14px; }
+		.summary-row strong { color: #fff; font: 13px var(--mono); text-align: right; }
+		.total-row { display: flex; align-items: end; justify-content: space-between; gap: 12px; padding-top: 20px; }
+		.total-label { color: #d0ded0; font-size: 14px; }
+		.total-price { color: var(--lime); font: clamp(30px, 3.5vw, 42px) var(--mono); white-space: nowrap; }
+		.billing-note { margin: 8px 0 0; color: #c3d4be; font: 12px var(--mono); text-align: right; }
+		.not-found { display: none; max-width: 600px; margin: 70px auto; padding: 35px; text-align: center; }
+		.not-found h1 { font-size: 32px; }
+		.not-found p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+		.not-found a { color: var(--green); font-weight: 800; }
+		@media (max-width: 850px) {
+			main { width: min(720px, calc(100% - 36px)); padding-top: 34px; }
+			.layout { grid-template-columns: 1fr; }
+			.summary-panel { position: static; }
+		}
+		@media (max-width: 520px) {
+			.site-header { height: 66px; padding: 0 18px; }
+			.brand-mark { width: 34px; height: 34px; }
+			.brand-name { font-size: 17px; }
+			.back-link { font-size: 12px; }
+			main { width: calc(100% - 24px); padding: 27px 0 38px; }
+			h1 { font-size: 38px; }
+			.page-heading p:last-child { font-size: 14px; line-height: 1.55; }
+			.details-panel { padding: 23px 16px; }
+			.section-heading { font-size: 17px; }
+			.section-subtitle { margin-left: 0; }
+			.student-card { grid-template-columns: minmax(0, 1fr) 105px; gap: 10px; padding: 13px; }
+			.field input { height: 46px; padding: 0 10px; font-size: 14px; }
+			.phone-row { grid-template-columns: 1fr; }
+			.secondary-button { width: 100%; }
+			.otp-area.is-visible { grid-template-columns: 1fr; }
+			.safety-fields { grid-template-columns: 1fr; }
+			.payment-options { grid-template-columns: 1fr; }
+			.payment-option { min-height: 60px; flex-direction: row; align-items: center; justify-content: flex-start; }
+			.summary-panel { padding: 24px 20px; }
+			.total-price { font-size: 31px; }
+			.sos-widget { right: 12px; bottom: 12px; }
+			.sos-button { min-height: 48px; padding: 0 14px; font-size: 13px; }
+		}
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+	</style>
+</head>
+<body>
+	<header class="site-header">
+		<a class="brand" href="index.html" aria-label="CampusRide home"><span class="brand-mark" aria-hidden="true">c.</span><span class="brand-name">campus<span>ride</span></span></a>
+		<a class="back-link" href="index.html">← Back to pass options</a>
+	</header>
+	<main id="checkout-main">
+		<section class="page-heading"><p class="eyebrow">YOUR CAMPUS COMMUTE, ONE STEP CLOSER</p><h1>Passenger details</h1><p>Tell us who’s travelling and choose how you would pay.</p></section>
+		<form id="checkout-form" class="layout" novalidate>
+			<section class="panel details-panel" aria-label="Passenger and payment details">
+				<h2 class="section-heading"><span class="section-number">01</span> Students on this pass</h2>
+				<p class="section-subtitle" id="student-subtitle">Add the name and age for each passenger.</p>
+				<div class="student-list" id="student-list"></div>
+				<div class="divider"></div>
+				<h2 class="section-heading"><span class="section-number">02</span> Mobile verification</h2>
+				<div class="phone-row">
+					<div class="field"><label for="mobile">Primary contact number</label><div class="phone-input"><span class="country-code">+91</span><input id="mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" maxlength="10" required></div></div>
+					<button class="secondary-button" id="send-otp" type="button">Get demo OTP</button>
+				</div>
+				<p class="field-hint">Use an Indian mobile number beginning with 6, 7, 8, or 9.</p>
+				<div class="otp-area" id="otp-area"><div class="field"><label for="otp">6-digit verification code</label><input id="otp" name="otp" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="Enter demo code" pattern="[0-9]{6}" maxlength="6"></div><button class="secondary-button" id="verify-otp" type="button">Verify number</button></div>
+				<p class="status" id="otp-status" role="status" aria-live="polite"></p>
+				<div class="divider"></div>
+				<section class="safety-card" aria-labelledby="safety-heading">
+					<h2 class="safety-heading" id="safety-heading"><span aria-hidden="true">!</span> Parent / guardian safety contact</h2>
+					<p class="safety-copy">Add a trusted contact. In an emergency, tap SOS to prepare a message with your route and, if allowed, your current location.</p>
+					<div class="safety-fields">
+						<div class="field"><label for="guardian-name">Contact name</label><input id="guardian-name" name="guardianName" type="text" autocomplete="name" placeholder="Parent or guardian" maxlength="80"></div>
+						<div class="field"><label for="guardian-mobile">Parent / guardian mobile</label><div class="phone-input"><span class="country-code">+91</span><input id="guardian-mobile" name="guardianMobile" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" maxlength="10"></div></div>
+					</div>
+					<p class="field-hint">The message opens in your phone’s SMS app for you to review and send. This page cannot send it automatically.</p>
+				</section>
+				<div class="divider"></div>
+				<h2 class="section-heading"><span class="section-number">04</span> Payment method</h2>
+				<fieldset class="payment-options" aria-label="Choose payment method">
+					<label class="payment-option"><input type="radio" name="payment" value="UPI" checked><span class="payment-icon" aria-hidden="true">UPI</span><span class="payment-name">UPI</span></label>
+					<label class="payment-option"><input type="radio" name="payment" value="Card"><span class="payment-icon" aria-hidden="true">▰</span><span class="payment-name">Credit / debit card</span></label>
+					<label class="payment-option"><input type="radio" name="payment" value="Net banking"><span class="payment-icon" aria-hidden="true">⌂</span><span class="payment-name">Net banking</span></label>
+				</fieldset>
+				<p class="demo-note"><strong>Demo checkout:</strong> OTP is simulated in this page and payments are not processed. A live launch needs an SMS provider and a payment gateway connected through secure server endpoints.</p>
+				<p class="error-message" id="checkout-error" role="alert"></p>
+				<button class="checkout-button" id="pay-button" type="submit"><span>Confirm demo checkout</span><span aria-hidden="true">↗</span></button>
+			</section>
+			<aside class="panel summary-panel" aria-label="Pass summary">
+				<p class="summary-kicker">PASS SUMMARY</p>
+				<div class="route"><div class="route-markers" aria-hidden="true"><span></span><i></i><span></span></div><div class="route-labels"><strong id="college-summary">Your college</strong><strong id="destination-summary">Your destination</strong></div></div>
+				<div class="summary-divider"></div>
+				<div class="summary-rows"><div class="summary-row"><span>Ride</span><strong id="ride-summary">Auto</strong></div><div class="summary-row"><span>Daily pickup</span><strong id="pickup-time-summary">8:00 am</strong></div><div class="summary-row"><span>Pass duration</span><strong id="duration-summary">Monthly</strong></div><div class="summary-row"><span>Passengers</span><strong id="passengers-summary">1 student</strong></div></div>
+				<div class="summary-divider"></div>
+				<div class="total-row"><span class="total-label">Estimated total</span><strong class="total-price" id="total-price">₹0</strong></div>
+				<p class="billing-note" id="billing-note">billed monthly</p>
+		</aside>
+		</form>
+	</main>
+	<section class="panel not-found" id="not-found"><p class="eyebrow">PASS NOT FOUND</p><h1>Start with a pass estimate.</h1><p>Choose your route and travel options first, then return here to finish your checkout details.</p><a href="index.html">Back to CampusRide</a></section>
+	<aside class="sos-widget" aria-label="Emergency contact">
+		<p class="sos-status" id="sos-status" role="status" aria-live="polite" hidden></p>
+		<div class="sos-actions">
+			<a class="sms-link" id="sms-link" href="#" hidden>Open SOS message</a>
+			<button class="copy-sos" id="copy-sos" type="button" hidden>Copy message</button>
+		</div>
+		<button class="sos-button" id="sos-button" type="button"><span class="sos-icon" aria-hidden="true">!</span><span>SOS · Parent alert</span></button>
+	</aside>
+	<script>
+		const estimateKey = 'campusride-checkout-estimate';
+		const rates = { auto: 2400, car: 4500, bike: 1200 };
+		const modeNames = { auto: 'Auto', car: 'Car', bike: 'Bike' };
+		const currency = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 });
+		const main = document.querySelector('#checkout-main');
+		const notFound = document.querySelector('#not-found');
+		let estimate;
+		let verified = false;
+
+		function formatPickupTime(value) {
+			if (!/^\d{2}:\d{2}$/.test(value || '')) return '8:00 am';
+			const [hours, minutes] = value.split(':').map(Number);
+			const time = new Date();
+			time.setHours(hours, minutes, 0, 0);
+			return new Intl.DateTimeFormat('en-IN', { hour: 'numeric', minute: '2-digit' }).format(time);
+		}
+
+		try {
+			estimate = JSON.parse(sessionStorage.getItem(estimateKey));
+		} catch {
+			estimate = null;
+		}
+
+		if (!estimate || !rates[estimate.mode] || !['monthly', 'yearly'].includes(estimate.duration)) {
+			main.hidden = true;
+			notFound.style.display = 'block';
+			document.querySelector('.sos-widget').hidden = true;
+		} else {
+			const passengerCount = Math.min(4, Math.max(1, Number(estimate.passengers) || 1));
+			const list = document.querySelector('#student-list');
+			const subtitle = document.querySelector('#student-subtitle');
+			const formatter = document.createDocumentFragment();
+			subtitle.textContent = passengerCount === 1 ? 'Add the name and age of the student.' : `Add the name and age for all ${passengerCount} passengers.`;
+
+			for (let passenger = 1; passenger <= passengerCount; passenger += 1) {
+				const card = document.createElement('div');
+				card.className = 'student-card';
+				card.innerHTML = `<div class="student-card-title"><span>Passenger ${passenger}</span><span>${passenger === 1 ? 'PASS HOLDER' : 'STUDENT'}</span></div><div class="field"><label for="student-name-${passenger}">Full name</label><input id="student-name-${passenger}" name="studentName" type="text" autocomplete="${passenger === 1 ? 'name' : 'off'}" placeholder="Student full name" maxlength="80" required></div><div class="field"><label for="student-age-${passenger}">Age</label><input id="student-age-${passenger}" name="studentAge" type="number" inputmode="numeric" min="15" max="100" placeholder="Age" required></div>`;
+				formatter.append(card);
+			}
+			list.append(formatter);
+
+			const yearly = estimate.duration === 'yearly';
+			const unitPrice = yearly ? Math.round(rates[estimate.mode] * 12 * .85) : rates[estimate.mode];
+			document.querySelector('#college-summary').textContent = estimate.college || 'Your college';
+			document.querySelector('#destination-summary').textContent = estimate.destination || 'Your destination';
+			document.querySelector('#ride-summary').textContent = modeNames[estimate.mode];
+			document.querySelector('#pickup-time-summary').textContent = formatPickupTime(estimate.pickupTime || '08:00');
+			document.querySelector('#duration-summary').textContent = yearly ? 'Yearly' : 'Monthly';
+			document.querySelector('#passengers-summary').textContent = `${passengerCount} ${passengerCount === 1 ? 'student' : 'students'}`;
+			document.querySelector('#total-price').textContent = currency.format(unitPrice * passengerCount);
+			document.querySelector('#billing-note').textContent = yearly ? 'billed yearly · includes 15% savings' : 'billed monthly';
+
+			const mobile = document.querySelector('#mobile');
+			const otpArea = document.querySelector('#otp-area');
+			const otpInput = document.querySelector('#otp');
+			const otpStatus = document.querySelector('#otp-status');
+			const error = document.querySelector('#checkout-error');
+			const phoneIsValid = () => /^[6-9]\d{9}$/.test(mobile.value.trim());
+			const guardianNameInput = document.querySelector('#guardian-name');
+			const guardianMobileInput = document.querySelector('#guardian-mobile');
+			const sosButton = document.querySelector('#sos-button');
+			const sosStatus = document.querySelector('#sos-status');
+			const smsLink = document.querySelector('#sms-link');
+			const copySosButton = document.querySelector('#copy-sos');
+			let sosMessage = '';
+
+			function prepareSOS(locationUrl = '') {
+				const studentName = document.querySelector('[name="studentName"]').value.trim() || 'A student';
+				const contactNumber = phoneIsValid() ? ` Call me at +91 ${mobile.value.trim()}.` : '';
+				const locationLine = locationUrl ? ` My current location: ${locationUrl}` : ' I could not share my current location.';
+				sosMessage = `SOS from ${studentName}: I need help. Route: ${estimate.college} to ${estimate.destination}. Daily pickup: ${formatPickupTime(estimate.pickupTime || '08:00')}.${locationLine}${contactNumber}`;
+				smsLink.href = `sms:+91${guardianMobileInput.value.trim()}?body=${encodeURIComponent(sosMessage)}`;
+				smsLink.textContent = `Open SOS message for ${guardianNameInput.value.trim()}`;
+				smsLink.hidden = false;
+				copySosButton.hidden = false;
+				sosStatus.textContent = locationUrl
+					? 'Message prepared with your location. Open it, review the details, and tap Send in your messaging app.'
+					: 'Message prepared without location. Open it, review the details, and tap Send in your messaging app.';
+				sosStatus.hidden = false;
+			}
+
+			sosButton.addEventListener('click', () => {
+				const guardianName = guardianNameInput.value.trim();
+				const guardianMobile = guardianMobileInput.value.trim();
+				if (!guardianName || !/^[6-9]\d{9}$/.test(guardianMobile)) {
+					sosStatus.textContent = 'Add a parent / guardian name and valid 10-digit mobile number first.';
+					sosStatus.hidden = false;
+					(!guardianName ? guardianNameInput : guardianMobileInput).focus();
+					return;
+				}
+				smsLink.hidden = true;
+				copySosButton.hidden = true;
+				sosStatus.textContent = 'Requesting location permission. You can still prepare an SOS message if location is unavailable.';
+				sosStatus.hidden = false;
+				if (!navigator.geolocation) {
+					prepareSOS();
+					return;
+				}
+				navigator.geolocation.getCurrentPosition(
+					(position) => {
+						const { latitude, longitude } = position.coords;
+						prepareSOS(`https://maps.google.com/?q=${latitude},${longitude}`);
+					},
+					() => prepareSOS(),
+					{ enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 }
+				);
+			});
+
+			copySosButton.addEventListener('click', async () => {
+				try {
+					await navigator.clipboard.writeText(sosMessage);
+					sosStatus.textContent = 'SOS message copied. Send it to your parent / guardian now.';
+				} catch {
+					sosStatus.textContent = 'Copy is unavailable. Use Open SOS message to continue in your SMS app.';
+				}
+			});
+
+			document.querySelector('#send-otp').addEventListener('click', () => {
+				if (!phoneIsValid()) {
+					mobile.setCustomValidity('Enter a valid 10-digit Indian mobile number.');
+					mobile.reportValidity();
+					mobile.addEventListener('input', () => mobile.setCustomValidity(''), { once: true });
+					return;
+				}
+				otpArea.classList.add('is-visible');
+				verified = false;
+				otpStatus.textContent = 'Demo OTP: 123456. A real deployment must send this through an SMS provider.';
+				otpInput.focus();
+			});
+
+			document.querySelector('#verify-otp').addEventListener('click', () => {
+				if (otpInput.value.trim() === '123456' && phoneIsValid()) {
+					verified = true;
+					otpStatus.textContent = 'Mobile number verified for this demo.';
+				} else {
+					verified = false;
+					otpStatus.textContent = 'That code does not match. Enter the demo OTP shown above.';
+				}
+			});
+
+			mobile.addEventListener('input', () => { verified = false; });
+			otpInput.addEventListener('input', () => { verified = false; });
+			document.querySelector('#checkout-form').addEventListener('submit', (event) => {
+				event.preventDefault();
+				error.textContent = '';
+				const nameInputs = [...document.querySelectorAll('[name="studentName"]')];
+				const ageInputs = [...document.querySelectorAll('[name="studentAge"]')];
+				const invalidField = [...nameInputs, ...ageInputs].find((input) => !input.checkValidity());
+				if (invalidField) {
+					invalidField.reportValidity();
+					invalidField.focus();
+					return;
+				}
+				if (!phoneIsValid()) {
+					error.textContent = 'Enter a valid mobile number before continuing.';
+					mobile.focus();
+					return;
+				}
+				if (!verified) {
+					error.textContent = 'Verify your mobile number with the demo OTP first.';
+					otpArea.classList.add('is-visible');
+					otpInput.focus();
+					return;
+				}
+				const method = document.querySelector('input[name="payment"]:checked').value;
+				const names = nameInputs.map((input) => input.value.trim());
+				error.style.color = 'var(--green)';
+				error.textContent = `Demo checkout complete for ${names.join(', ')} using ${method}. No payment was processed.`;
+				document.querySelector('#pay-button').disabled = true;
+			});
+		}
+	</script>
+</body>
+</html>
